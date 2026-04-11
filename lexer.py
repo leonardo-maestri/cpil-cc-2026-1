@@ -6,7 +6,7 @@ read b
 read c
 result := (a + b) * c
 write result
-""""
+"""
 
 # Caracteres considerados "em branco"
 BLANKS = {
@@ -103,4 +103,53 @@ def analyze(source: str) -> None:
             case 40:
                 if is_alphanum(ch):     lexeme, state = go_to_state(ch, 50)
                 if ch in BLANKS:        lexeme, state = accept(ch, 1002)
-                else:                   display_error(ch)             
+                else:                   display_error(ch)
+            case 50:
+                if is_alphanum(ch):     lexeme, state = go_to_state(ch, 50)
+                if ch in BLANKS:        lexeme, state = accept(ch, 1001)
+                else:                   display_error(ch)     
+            case 60:
+                if ch == "r":           lexeme, state = go_to_state(ch, 70)
+                elif is_alphanum(ch):   lexeme, state = go_to_state(ch, 50)
+                elif ch in BLANKS:      lexeme, state = accept(ch, 1001)
+                else:                    display_error(ch)
+            case 70:
+                if ch == "i":           lexeme, state = go_to_state(ch, 80)
+                elif is_alphanum(ch):   lexeme, state = go_to_state(ch, 50)
+                elif ch in BLANKS:      lexeme, state = accept(ch, 1001)
+                else:                    display_error(ch)
+            case 80:
+                if ch == "t":           lexeme, state = go_to_state(ch, 90)
+                elif is_alphanum(ch):   lexeme, state = go_to_state(ch, 50)
+                elif ch in BLANKS:      lexeme, state = accept(ch, 1001)
+                else:                    display_error(ch)
+            case 90:
+                if ch == "e":           lexeme, state = go_to_state(ch, 100)
+                elif is_alphanum(ch):   lexeme, state = go_to_state(ch, 50)
+                elif ch in BLANKS:      lexeme, state = accept(ch, 1001)
+                else:                    display_error(ch)
+            case 100:
+                elif is_alphanum(ch):   lexeme, state = go_to_state(ch, 50)
+                elif ch in BLANKS:      lexeme, state = accept(ch, 1003)
+                else:                    display_error(ch)
+            case 110:
+                if is_digit(ch)         lexeme, state = go_to_state(ch, 110)
+                elif ch == ".":         lexeme, state = go_to_state(ch, 120)
+                elif ch in BLANKS:      lexeme, state = accept(ch, 1004)
+                else:                   display_error(ch)
+            case 120:
+                if is_digit(ch)         lexeme, state = go_to_state(ch, 120)
+                elif ch in BLANKS:      lexeme, state = accept(ch, 1004)
+                else:                   display_error(ch)
+            case 130:
+                if is_digit(ch)         lexeme, state = go_to_state(ch, 140)
+            case 140:
+                if is_digit(ch)         lexeme, state = go_to_state(ch, 140)
+                elif ch in BLANKS:      lexeme, state = accept(ch, 1004)
+                else:                   display_error(ch)
+            case 150:
+                if ch == "=":         lexeme, state = go_to_state(ch, 1005)
+                else:                   display_error(ch)
+            
+                       
+        
